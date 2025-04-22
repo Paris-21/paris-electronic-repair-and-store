@@ -1,0 +1,278 @@
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #eee;
+}
+
+body.dark-mode header,
+body.dark-mode nav,
+body.dark-mode footer {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+body.dark-mode .product,
+body.dark-mode .service {
+    background-color: #2a2a2a;
+    color: white;
+}
+
+body.dark-mode button {
+    background-color: #333;
+}
+
+body.dark-mode button:hover {
+    background-color: #444;
+}
+
+body.dark-mode .social-media a {
+    color: #bbb;
+}
+
+header {
+    background: linear-gradient(90deg, #1d3557, #457b9d);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-toggle {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#darkModeToggle {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+nav {
+    display: none;
+    background: #444;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    padding: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.show-menu {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background-color: #3578ba;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.left-section,
+.right-section {
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    flex: 1 1 300px;
+    max-width: 500px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.left-section {
+    background-color: rgba(248, 250, 252, 0.85);
+}
+
+.right-section {
+    background-color: rgba(37, 99, 235, 0.85);
+    color: white;
+}
+
+.service,
+.product {
+    flex: 1 1 100%;
+    background-color: #0f2a4d;
+    color: white;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.product img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Vertical form layout */
+.services form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Mobile Responsive Form Fix */
+@media (max-width: 768px) {
+    .services form {
+        flex-direction: column;
+    }
+
+    .services input,
+    .services select,
+    .services button {
+        width: 100%;
+    }
+}
+
+button {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.success-message {
+    color: #22c55e;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.whatsapp-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.whatsapp-button:hover {
+    background-color: #1ebe5d;
+}
+
+/* Responsive layout for narrower screens */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left-section,
+    .right-section {
+        width: 90%;
+    }
+
+    .product img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Responsive layout for tablets */
+@media (max-width: 900px) {
+    .product {
+        flex: 1 1 calc(50% - 1rem);
+    }
+}
+
+/* Responsive layout for larger screens */
+@media (min-width: 1024px) {
+    .product {
+        flex: 1 1 calc(33.333% - 1rem);
+    }
+}
+
+/* Show services only on mobile */
+.mobile-only {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .mobile-only {
+        display: block;
+    }
+
+    .right-section {
+        display: none;
+    }
+}

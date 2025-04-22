@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paris electronic Repair & Store</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="images/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #0f2a4d;
+      color: #ffffff58;
+    }
+    header {
+      padding: 1rem;
+      text-align: center;
+      background-color: #122f52;
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      background-color: #122f52;
+      padding: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .container {
+     width: 100%;
+     display: flex;
+     flex-wrap: wrap;
+     gap: 1rem;
+     background-color: #f6fbff;
+     padding: 1.5rem;
+     border-radius: 10px;
+    }
+    .services, .products {
+      flex: 1;
+      min-width: 300px;
+      margin: 1rem;
+    }
+    .services h2, .products h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .services form {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+    .services input, .services select, .services button {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .services button {
+      background-color: #122f52;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .confirmation {
+      margin-top: 1rem;
+      color: green;
+      font-weight: 600;
+    }
+    .product {
+      background-color: #0f2a4d;
+      color: white;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .product img {
+      width: 200px;
+      height: 150px;
+    }
+    .product button {
+      margin-left: auto;
+      background-color: #122f52;
+      border: none;
+      padding: 0.5rem 1rem;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background-color: #122f52;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+    footer .socials {
+      margin: 1rem 0;
+    }
+    footer .socials a {
+      margin: 0 0.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
+
+    /* Show repair services only on mobile */
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 767px) {
+      .mobile-only {
+        display: block;
+      }
+
+      .right-section {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <i class="fas fa-bars menu-toggle"></i>
+    <h1>Paris electronic Repair & Store</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#" onclick="showServicesOnly(event)"><i class="fas fa-tools"></i> Repair Services</a></li>
+      <li><a href="#" onclick="showStoreOnly(event)"><i class="fas fa-store"></i> Store</a></li>
+      <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <div class="services white-bg mobile-only" id="services">
+      <section>
+        <h2>Our Repair Services</h2>
+        <form action="https://formspree.io/f/mnqkwxyz" method="POST">
+          <select name="service" required>
+            <option value="">Select a Repair Service</option>
+            <option value="phone">Phone Repair</option>
+            <option value="tv">TV Screen Repair</option>
+            <option value="laptop">Laptop Repair</option>
+            <option value="tablet">Tablet Repair</option>
+          </select>
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <input type="date" name="date" required />
+          <button type="submit">Book Now</button>
+          <p id="form-message" style="color: green; font-weight: bold;"></p>
+        </form>
+      </section>
+    </div>
+
+    <div class="right-section" id="store-section">
+      <section id="store">
+        <h2>Our Products</h2>
+        <div class="products blue-bg">
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/earbuds.png" alt="Earbuds" />
+            <div>
+              <h3>Wireless Earbuds</h3>
+              <p>High-quality wireless earbuds with noise cancellation.</p>
+            </div>
+            <button onclick="addToCart('Wireless Earbuds')">Add to Cart</button>
+          </div>
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/macbook.png" alt="mac book laptop" />
+            <div>
+              <h3>MacBook Laptop</h3>
+              <p>All versions of MacBook devices available.</p>
+            </div>
+            <button onclick="addToCart('mac book laptop')">Add to Cart</button>
+          </div>
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/charger.png" alt="Portable Charger" />
+            <div>
+              <h3>Portable Charger</h3>
+              <p>Fast-charging portable power bank for your devices.</p>
+            </div>
+            <button onclick="addToCart('Portable Charger')">Add to Cart</button>
+          </div>
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/hdd_ssd.png" alt="HDD & SSD" />
+            <div>
+              <h3>HDD & SSD</h3>
+              <p>Boost your storage and speed with HDD & SSD options.</p>
+            </div>
+            <button onclick="addToCart('HDD & SSD')">Add to Cart</button>
+          </div>
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/smartwatch.png" alt="Smart Watch" />
+            <div>
+              <h3>Smart Watch</h3>
+              <p>Feature-packed smartwatch with fitness tracking.</p>
+            </div>
+            <button onclick="addToCart('Smart Watch')">Add to Cart</button>
+          </div>
+          <div class="product" style="background-color: #3578ba;">
+            <img src="images/hp_laptop.png" alt="HP Laptop" />
+            <div>
+              <h3>HP Laptop</h3>
+              <p>High-quality HP laptops and accessories.</p>
+            </div>
+            <button onclick="addToCart('HP Laptop')">Add to Cart</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>Contact us: +250 789 175 691 | ayoparis250@gmail.com</p>
+    <div class="social-media">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>&copy; 2025 Paris Electronic Repair & Store. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', function () {
+      document.querySelector('nav').classList.toggle('show-menu');
+    });
+
+    let cart = [];
+    function addToCart(item) {
+      cart.push(item);
+      updateCart();
+    }
+
+    function updateCart() {
+      let cartList = document.getElementById('cart-items');
+      if (cartList) {
+        cartList.innerHTML = '';
+        cart.forEach(item => {
+          let li = document.createElement('li');
+          li.textContent = item;
+          cartList.appendChild(li);
+        });
+      }
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    function showStoreOnly(event) {
+      event.preventDefault();
+      document.getElementById("services").style.display = "none";
+      document.getElementById("store-section").style.display = "block";
+    }
+
+    function showServicesOnly(event) {
+      event.preventDefault();
+      document.getElementById("services").style.display = "block";
+      document.getElementById("store-section").style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("services").style.display = "block";
+      document.getElementById("store-section").style.display = "none";
+    });
+
+    document.querySelector("form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const formMessage = document.getElementById("form-message");
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json"
+        }
+      }).then(response => {
+        if (response.ok) {
+          formMessage.textContent = "✅ Thank you! We received your booking.";
+          form.reset();
+        } else {
+          formMessage.textContent = "❌ Oops! Something went wrong. Try again.";
+        }
+      }).catch(error => {
+        formMessage.textContent = "❌ Error sending the form.";
+      });
+    });
+  </script>
+</body>
+</html>
