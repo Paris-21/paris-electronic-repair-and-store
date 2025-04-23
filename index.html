@@ -8,7 +8,6 @@
   <link rel="icon" href="images/logo.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="styles.css" />
-  <button id="darkModeToggle" onclick="toggleDarkMode()">🌙</button>
   <style>
     * {
       margin: 0;
@@ -17,13 +16,14 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background-color: #0f2a4d;
-      color: #ffffff58;
+      background-color: #f4f9ff;
+      color: #000;
     }
     header {
       padding: 1rem;
       text-align: center;
       background-color: #122f52;
+      color: white;
     }
     header h1 {
       font-size: 2rem;
@@ -42,26 +42,34 @@
       font-weight: 600;
     }
     .container {
-     width: 100%;
-     display: flex;
-     flex-wrap: wrap;
-     gap: 1rem;
-     background-color: #f6fbff;
-     padding: 1.5rem;
-     border-radius: 10px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 1.5rem;
     }
     .services, .products {
       flex: 1;
       min-width: 300px;
       margin: 1rem;
+      background-color: #ffffff;
+      color: #000;
+      border-radius: 10px;
+      padding: 1rem;
     }
     .services h2, .products h2 {
-      font-size: 1.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #122f52;
       margin-bottom: 1rem;
+      background-color: #e7f1ff;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      text-align: center;
     }
     .services form {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       gap: 1rem;
     }
     .services input, .services select, .services button {
@@ -110,17 +118,13 @@
       color: #fff;
       font-size: 0.9rem;
     }
-    footer .socials {
-      margin: 1rem 0;
-    }
-    footer .socials a {
+    footer .social-media a {
       margin: 0 0.5rem;
       color: #fff;
       text-decoration: none;
       font-size: 1.2rem;
     }
 
-    /* Show repair services only on mobile */
     .mobile-only {
       display: none;
     }
@@ -143,7 +147,7 @@
   </header>
 
   <nav>
-    <ul>
+    <ul style="list-style: none; display: flex; gap: 1rem;">
       <li><a href="#" onclick="showServicesOnly(event)"><i class="fas fa-tools"></i> Repair Services</a></li>
       <li><a href="#" onclick="showStoreOnly(event)"><i class="fas fa-store"></i> Store</a></li>
       <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
@@ -151,82 +155,77 @@
   </nav>
 
   <div class="container">
-    <div class="services white-bg mobile-only" id="services">
-      <section>
+    <div class="services mobile-only" id="services">
+      <section class="repair-services">
         <h2>Our Repair Services</h2>
-        <form action="https://formspree.io/f/mnqkwxyz" method="POST">
-          <select name="service" required>
-            <option value="">Select a Repair Service</option>
-            <option value="phone">Phone Repair</option>
-            <option value="tv">TV Screen Repair</option>
-            <option value="laptop">Laptop Repair</option>
-            <option value="tablet">Tablet Repair</option>
-          </select>
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <input type="date" name="date" required />
-          <button type="submit">Book Now</button>
-          <p id="form-message" style="color: green; font-weight: bold;"></p>
-        </form>
       </section>
+      <form action="https://formspree.io/f/mnqkwxyz" method="POST">
+        <select name="service" required>
+          <option value="">Select a Repair Service</option>
+          <option value="phone">Phone Repair</option>
+          <option value="tv">TV Screen Repair</option>
+          <option value="laptop">Laptop Repair</option>
+          <option value="tablet">Tablet Repair</option>
+        </select>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="date" name="date" required />
+        <button type="submit">Book Now</button>
+        <p id="form-message" style="color: green; font-weight: bold;"></p>
+      </form>
     </div>
 
     <div class="right-section" id="store-section">
-      <section id="store">
-        <h2>Our Products</h2>
-        <div class="products blue-bg">
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/earbuds.png" alt="Earbuds" />
-            <div>
-              <h3>Wireless Earbuds</h3>
-              <p>High-quality wireless earbuds with noise cancellation.</p>
-            </div>
-            <button onclick="addToCart('Wireless Earbuds')">Add to Cart</button>
+      <div class="products blue-bg">
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/earbuds.png" alt="Earbuds" />
+          <div>
+            <h3>Wireless Earbuds</h3>
+            <p>High-quality wireless earbuds with noise cancellation.</p>
           </div>
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/mac book.png" alt="mac book laptop" />
-            <div>
-              <h3>MacBook Laptop</h3>
-              <p>All versions of MacBook devices available.</p>
-            </div>
-            <button onclick="addToCart('mac book laptop')">Add to Cart</button>
-          </div>
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/charger.png" alt="Portable Charger" />
-            <div>
-              <h3>Portable Charger</h3>
-              <p>Fast-charging portable power bank for your devices.</p>
-            </div>
-            <button onclick="addToCart('Portable Charger')">Add to Cart</button>
-          </div>
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/hhd&ssd.png" alt="HDD & SSD" />
-            <div>
-              <h3>HDD & SSD</h3>
-              <p>Boost your storage and speed with HDD & SSD options.</p>
-            </div>
-            <button onclick="addToCart('HDD & SSD')">Add to Cart</button>
-          </div>
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/smartwatch.png" alt="Smart Watch" />
-            <div>
-              <h3>Smart Watch</h3>
-              <p>Feature-packed smartwatch with fitness tracking.</p>
-            </div>
-            <button onclick="addToCart('Smart Watch')">Add to Cart</button>
-          </div>
-          <div class="product" style="background-color: #3578ba;">
-            <img src="images/hp lap.png" alt="HP Laptop" />
-            <div>
-              <h3>HP Laptop</h3>
-              <p>High-quality HP laptops and accessories.</p>
-            </div>
-            <button onclick="addToCart('HP Laptop')">Add to Cart</button>
-          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - Wireless Earbuds" class="chat-btn">Chat</a>
         </div>
-      </section>
-    </div>
-  </div>
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/mac book.png" alt="mac book laptop" />
+          <div>
+            <h3>MacBook Laptop</h3>
+            <p>All versions of MacBook devices available.</p>
+          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - MacBook Laptop" class="chat-btn">Chat</a>
+        </div>
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/charger.png" alt="Portable Charger" />
+          <div>
+            <h3>Portable Charger</h3>
+            <p>Fast-charging portable power bank for your devices.</p>
+          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - Portable Charger" class="chat-btn">Chat</a>
+        </div>
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/hhd&ssd.png" alt="HDD & SSD" />
+          <div>
+            <h3>HDD & SSD</h3>
+            <p>Boost your storage and speed with HDD & SSD options.</p>
+          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - HDD & SSD" class="chat-btn">Chat</a>
+        </div>
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/smartwatch.png" alt="Smart Watch" />
+          <div>
+            <h3>Smart Watch</h3>
+            <p>Feature-packed smartwatch with fitness tracking.</p>
+          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - Smart Watch" class="chat-btn">Chat</a>
+        </div>
+        <div class="product" style="background-color: #3578ba;">
+          <img src="images/hp lap.png" alt="HP Laptop" />
+          <div>
+            <h3>HP Laptop</h3>
+            <p>High-quality HP laptops and accessories.</p>
+          </div>
+          <a href="mailto:ayoparis250@gmail.com?subject=Product Inquiry - HP Laptop" class="chat-btn">Chat</a>
+        </div>
+      </div>
 
   <footer>
     <p>Contact us: +250 789 175 691 | ayoparis250@gmail.com</p>
@@ -280,7 +279,7 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("services").style.display = "block";
-      document.getElementById("store-section").style.display = "none";
+      document.getElementById("store-section").style.display = "block";
     });
 
     document.querySelector("form").addEventListener("submit", function (e) {
